@@ -1,4 +1,4 @@
-# SugarCRM Php unserialize() PHP code execution
+# SugarCRM 6.3.1 Php unserialize() PHP code execution
 
 There is a php class file to use in exploit python code.
 
