@@ -1,0 +1,99 @@
+</a>PHP Dangerous Functions.</h1>
+<p>&lt;--------Acquire User supplied input------&gt;</p>
+<ul>
+<li>$_GET and $HTTP_GET_VARS //parameter submitted in query string Ex: $_GET['username']</li>
+<li>$_POST and $HTTP_POST_VARS //parameter submitted in request body string Ex: $_POST['username']</li>
+<li>$_COOKIE and $HTTP_COOKIE_VARS //cookies submitted in the request Ex: $_COOKIE['name']</li>
+<li>$_REQUEST //contains all item the item in $_GET, $_POST and $_COOKIE</li>
+<li>$_FILES and $HTTP_POST_FILES //contains file uploaded in the request</li>
+<li>$_SERVER['PHP_SELF'] //contains current executing page</li>
+<li>$_SESSION //store session value Ex: $_SESSION['username'] = $_POST['username']</li>
+</ul>
+<p>&lt;---------Command Exection-----------&gt;</p>
+<ul>
+<li>exec           - Returns last line of commands output</li>
+<li>passthru       - Passes commands output directly to the browser</li>
+<li>system         - Passes commands output directly to the browser and returns last line</li>
+<li>shell_exec     - Returns commands output</li>
+<li>`` (backticks) - Same as shell_exec() but work in linux</li>
+<li>popen          - Opens read or write pipe to process of a command</li>
+<li>proc_open      - Similar to popen() but greater degree of control</li>
+<li>pcntl_exec     - Executes a program</li>
+</ul>
+<p>&lt;----------Code Execution------------------&gt;</p>
+<ul>
+<li>eval()</li>
+<li>assert()  - identical to eval()</li>
+<li>preg_replace('/.*/e',...)  //e does an eval() on the match</li>
+<li>create_function()</li>
+<li>call_user_func()</li>
+<li>call_user_func_array()<br>
+EX: eval("echo " . $_REQUEST["user_name"] . ";");</li>
+</ul>
+<p>&lt;-----------XSS-------------&gt;</p>
+<ul>
+<li>echo "Welcome " . $_GET['user_input'];</li>
+<li>&lt;?= $_GET['user_input'] ?&gt;</li>
+</ul>
+<p>&lt;-----------Directory Traversal &amp;  SSRF-----&gt;</p>
+<ul>
+<li>fopen() //Opens file or URL</li>
+<li>readfile() //Read a file</li>
+<li>file()  // Reads entire file into an array</li>
+<li>fgets() //Read first line</li>
+<li>fpassthru() //Read from the current position in file - until EOF, and then write the result to the output buffer</li>
+<li>gzopen() //</li>
+<li>unlink() //delete a file</li>
+<li>file_get_contents() //Reads entire file into a string</li>
+<li>parse_ini_file()</li>
+<li>fwrite() //Write a open file</li>
+<li>fread()  // Read a open file</li>
+</ul>
+<p>Ex 1:
+$path = $_GET["file"];<br>
+$file = fopen($path, "r");<br>
+$line = fgets($file);</p>
+<p>&lt;-------------File Upload-------------&gt;</p>
+<ul>
+<li>move_uploaded_file()</li>
+</ul>
+<p>&lt;-------------SQL Injection------------&gt;
+Following function used to query database</p>
+<ul>
+<li>mysql_query  //use in MySQL</li>
+<li>mssql_query   //use in MsSQL</li>
+<li>pg_query  //use in Postgress</li>
+</ul>
+<p>Ex:<br>
+$username = $_POST["username"];<br>
+$password = $_POST["password"];<br>
+$sql="SELECT * FROM users WHERE username = '$username' AND password = '$password'";<br>
+$result = mysql_query($sql, $link);</p>
+<p>&lt;-----------LFI &amp; RFI----------------------&gt;</p>
+<ul>
+<li>include() //include remote/local PHP file into PHP file.</li>
+<li>include_once()</li>
+<li>require()  //same as include but stop execution in case of error</li>
+<li>require_once()<br>
+EX:
+$user_prof = $_GET['user_profile'];<br>
+$path = "./user/" . $user_prof;<br>
+$file = require($path);</li>
+</ul>
+<p>&lt;------------Serialize &amp; Deserialize--------&gt;</p>
+<ul>
+<li>serialize()</li>
+<li>unserialize()<br>
+Ex: $input = $_POST['data'];    //a:3:{i:0;s:4:"Math";i:1;s:8:"Language";i:2;s:7:"Science";}<br>
+var c = unserialize($input);</li>
+</ul>
+<p>&lt;---------- Info function-------------------&gt;</p>
+<ul>
+<li>phpinfo()</li>
+</ul>
+
+            </div>
+
+        </div>
+
+</div>
