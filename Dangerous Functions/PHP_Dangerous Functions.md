@@ -29,10 +29,12 @@ create_function()
 call_user_func()
 call_user_func_array()
 EX: eval("echo " . $_REQUEST["user_name"] . ";");
+
 <-----------XSS------------->
 
 echo "Welcome " . $_GET['user_input'];
 <?= $_GET['user_input'] ?>
+
 <-----------Directory Traversal & SSRF----->
 
 fopen() //Opens file or URL
@@ -63,7 +65,9 @@ Secure Configuration :
  <FilesMatch ".+\.ph(p([3457s]|\-s)?|t|tml)$">  SetHandler application/x-httpd-php  </FileMatch>
 
 move_uploaded_file()
-<-------------SQL Injection------------> Following function used to query database
+
+<-------------SQL Injection------------> 
+Following function used to query database
 
 mysql_query //use in MySQL
 mssql_query //use in MsSQL
@@ -83,6 +87,7 @@ require_once()
 EX: $user_prof = $_GET['user_profile'];
 $path = "./user/" . $user_prof;
 $file = require($path);
+
 <------------Serialize & Deserialize-------->
 
 serialize()
